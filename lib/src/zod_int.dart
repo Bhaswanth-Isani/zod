@@ -22,7 +22,7 @@ class ZodInt extends ZodType {
 
   /// If the value is greater than the min value or not.
   ZodInt min(int min, {bool inclusive = false, String? message}) {
-    if (inclusive ? (value ?? 0) <= min : (value ?? 0) < min) {
+    if (value != null && inclusive ? value! <= min : value! < min) {
       _error ??= message ?? 'int.min';
     }
     return this;
@@ -30,7 +30,7 @@ class ZodInt extends ZodType {
 
   /// If the value is less than the max value or not.
   ZodInt max(int max, {bool inclusive = false, String? message}) {
-    if (inclusive ? (value ?? 0) >= max : (value ?? 0) > max) {
+    if (value != null && inclusive ? value! >= max : value! > max) {
       _error ??= message ?? 'int.max';
     }
     return this;

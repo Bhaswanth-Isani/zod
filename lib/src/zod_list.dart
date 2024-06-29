@@ -31,7 +31,7 @@ class ZodList<T> extends ZodType {
 
   /// If the list passed in has min items or not.
   ZodList<T> min(int min, {String? message}) {
-    if (value!.length < min) {
+    if (value != null && value!.length < min) {
       _error ??= message ?? 'list.min';
     }
     return this;
@@ -39,7 +39,7 @@ class ZodList<T> extends ZodType {
 
   /// If the list passed in has max items or not.
   ZodList<T> max(int max, {String? message}) {
-    if (value!.length > max) {
+    if (value != null && value!.length > max) {
       _error ??= message ?? 'list.max';
     }
     return this;
@@ -47,7 +47,7 @@ class ZodList<T> extends ZodType {
 
   /// If the list passed in has exact number of items or not.
   ZodList<T> exactLength(int length, {String? message}) {
-    if (value!.length != length) {
+    if (value != null && value!.length != length) {
       _error ??= message ?? 'list.length';
     }
     return this;

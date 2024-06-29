@@ -23,7 +23,7 @@ class ZodString extends ZodType {
   /// If the length of the value passed in is greater than the minLength
   /// parameter or not.
   ZodString min(int minLength, {String? message}) {
-    if ((value?.length ?? 0) < minLength) {
+    if (value != null && value!.length < minLength) {
       _error ??= message ?? 'string.min.length';
     }
     return this;
@@ -32,7 +32,7 @@ class ZodString extends ZodType {
   /// If the length of the value passed in is less than the maxLength
   /// parameter or not.
   ZodString max(int maxLength, {String? message}) {
-    if ((value?.length ?? 0) > maxLength) {
+    if (value != null && value!.length > maxLength) {
       _error ??= message ?? 'string.max.length';
     }
     return this;
@@ -41,7 +41,7 @@ class ZodString extends ZodType {
   /// If the length of the value passed in is equal to the length parameter or
   /// not.
   ZodString length(int length, {String? message}) {
-    if (value?.length != length) {
+    if (value != null && value!.length != length) {
       _error ??= message ?? 'string.length';
     }
     return this;
@@ -118,7 +118,7 @@ class ZodString extends ZodType {
 
   /// If the value passed in starts with the prefix or not.
   ZodString startsWith(String prefix, {String? message}) {
-    if (!(value?.startsWith(prefix) ?? true)) {
+    if (value != null && !value!.startsWith(prefix)) {
       _error ??= message ?? 'string.startsWith';
     }
     return this;
@@ -126,7 +126,7 @@ class ZodString extends ZodType {
 
   /// If the value passed in ends with the suffix or not.
   ZodString endsWith(String suffix, {String? message}) {
-    if (!(value?.endsWith(suffix) ?? true)) {
+    if (value != null && !value!.endsWith(suffix)) {
       _error ??= message ?? 'string.endsWith';
     }
     return this;
@@ -134,7 +134,7 @@ class ZodString extends ZodType {
 
   /// If the value passed in contains the substring or not.
   ZodString contains(String substring, {String? message}) {
-    if (!(value?.contains(substring) ?? true)) {
+    if (value != null && !value!.contains(substring)) {
       _error ??= message ?? 'string.contains';
     }
     return this;

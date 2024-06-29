@@ -22,7 +22,7 @@ class ZodDouble extends ZodType {
 
   /// If the value is greater than the min value or not.
   ZodDouble min(double min, {bool inclusive = false, String? message}) {
-    if (inclusive ? (value ?? 0) <= min : (value ?? 0) < min) {
+    if (value != null && inclusive ? value! <= min : value! < min) {
       _error ??= message ?? 'Double.min';
     }
     return this;
@@ -30,7 +30,7 @@ class ZodDouble extends ZodType {
 
   /// If the value is less than the max value or not.
   ZodDouble max(double max, {bool inclusive = false, String? message}) {
-    if (inclusive ? (value ?? 0) >= max : (value ?? 0) > max) {
+    if (value != null && inclusive ? value! >= max : value! > max) {
       _error ??= message ?? 'Double.max';
     }
     return this;
@@ -38,7 +38,7 @@ class ZodDouble extends ZodType {
 
   /// If the value passed in is finite or not.
   ZodDouble finite({String? message}) {
-    if (!value!.isFinite) {
+    if (value != null && !value!.isFinite) {
       _error ??= message ?? 'Double.finite';
     }
     return this;
@@ -46,7 +46,7 @@ class ZodDouble extends ZodType {
 
   /// If the value passed in is infinite or not.
   ZodDouble infinite({String? message}) {
-    if (value!.isInfinite) {
+    if (value != null && !value!.isInfinite) {
       _error ??= message ?? 'Double.infinite';
     }
     return this;
